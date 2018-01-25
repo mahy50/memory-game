@@ -1,28 +1,26 @@
 <template>
-  <div id="app">
-    <img src="./assets/logo.png">
-    <HelloWorld/>
+  <div class="game-panel"
+    ondragstart="return false;"
+    oncontextmenu="return false;"
+    onselectstart="return false;"
+    onselect="document.selection.empty();"
+  >
+    <dashboard></dashboard>
+    <chessboard></chessboard>
+    <play-status></play-status>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld'
-
+import Dashboard from './components/Dashboard'
+import Chessboard from './components/Chessboard'
+import PlayStatus from './components/PlayStatus'
 export default {
-  name: 'App',
   components: {
-    HelloWorld
-  }
+    Dashboard,
+    Chessboard,
+    PlayStatus
+  },
+  methods: {}
 }
 </script>
-
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>

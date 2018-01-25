@@ -1,0 +1,145 @@
+/* app start */
+* {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.game-panel {
+  max-width: 450px;
+  border: 5px solid #6c6363;
+  border-radius: 2px;
+  margin: auto;
+  padding: 0.3em;
+}
+
+/* app end */
+
+/* chessboard start */
+.box {
+  width: 100%;
+}
+.row{
+  flex-basis: 100%;
+  display:flex;
+}
+.item {
+  display: inline-block;
+}
+.container{
+  display: flex;
+  flex: 1;
+  cursor: pointer;
+  margin: 3px;
+  box-sizing: border-box;
+}
+.card {
+  display: flex;
+  flex: 1;
+  padding-bottom: 120%;
+  position: relative;
+  transition: transform 1s;
+  perspective: 800px;
+  transform-style: preserve-3d;
+}
+.card img {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  backface-visibility: hidden;
+  box-sizing: border-box;
+  border: 3px solid #f5b31f;
+  border-radius: 5px;
+}
+.card .front {
+  background: #fff;
+  border: 3px solid #f5b31f;
+  transform: rotateY( 180deg );
+}
+.card .back {
+  background: #fff;
+  transform: rotateY( 0deg );
+}
+.card.flipped {
+  transform: rotateY( 180deg );
+}
+/* chessboard end */
+
+/* dashboard start */
+.dashboard {
+  width: 100%;
+  display: flex;
+  flex: 1;
+}
+span {
+  display: block;
+}
+.match-info, .score, .brand {
+  padding: 5px;
+  border-radius: 5px;
+  text-align: center;
+  margin: 5px;
+  flex: 1;
+}
+.match-info, .score {
+  background-color: #bbada0;
+  color: #eae0d1;
+  font-size: 0.8em;
+}
+.brand {
+  background-color: #3c67b1;
+  color: #eae0d1;
+  font-size: 1.3em;
+  line-height: 2.4em;
+}
+/* dashboard end */
+
+/* play status start */
+.status-footer {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 10px;
+  width: 100%;
+  font-size: 15px;
+  font-weight: normal;
+}
+.status-footer span {
+  width: 5em;
+  line-height: 2em;
+  vertical-align: middle;
+}
+.status-footer span:last-of-type {
+  text-align: right;
+}
+.play-status {
+  font-size: 18px;
+  line-height: 1.5em;
+  padding: 0 0.3em;
+  font-weight: bold;
+  text-align: center;
+}
+.play-status .pass {
+  cursor: pointer;
+  border-radius: 5px;
+  background-color: #faebd7;
+}
+.play-status.pass:hover {
+  background-color: #e8cbb0
+}
+/* play status end */
+
+/* media start */
+@media screen and (max-width: 405px) {
+  body {
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 380px) {
+  .card img {
+    border: 3px solid #f5b31f;
+  }
+}
+/* media end */

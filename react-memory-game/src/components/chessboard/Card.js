@@ -3,18 +3,20 @@ import React, { Component } from 'react'
 class Card extends Component {
   constructor(props) {
     super(props)
-    this.state = {
-      cardName: '001',
-      flipped: false
-    }
+    // this.state = {
+    //   cardName: '001',
+    //   flipped: false
+    // }
     this.clickHandler = this.clickHandler.bind(this)
   }
   render() {
+    const card = this.props.card
+    // debugger
     return (
       <div className="container" onClick={this.clickHandler}>
-        <div className={this.state.flipped ? 'card flipped' : 'card'}>
+        <div className={card.flipped ? 'card flipped' : 'card'}>
             <img className="front"
-              src={require(`./../../common/assets/images/${this.state.cardName}.svg`)}
+              src={require(`./../../common/assets/images/${card.cardName}.svg`)}
               alt="card"/>
             <img className="back"
               src={require('./../../common/assets/images/back.svg')}
@@ -23,11 +25,12 @@ class Card extends Component {
       </div>
     )
   }
-  clickHandler() {
-    this.setState({
-      flipped: !this.state.flipped
-    })
-    console.log(this.state.flipped)
+  clickHandler(e) {
+    this.props.callback(this.props.index)
+    // this.setState({
+    //   // flipped: !this.state.flipped
+    // })
+    // console.log(this.state.flipped)
       // if (this.$store.state.status === types.PASS) return
       // if (this.card.flipped === types.FLIPPED) return
 

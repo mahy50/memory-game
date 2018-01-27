@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import Dashboard from './components/dashboard/Dashboard'
 import Chessboard from './components/chessboard/Chessboard'
 import PlayStatus from './components/play_status/PlayStatus'
-
+import { connect } from 'react-redux'
+import { initCards } from './redux/modules/card'
 import './App.css';
 
 class App extends Component {
@@ -18,6 +19,16 @@ class App extends Component {
       </div>
     )
   }
+  componentWillMount() {
+    this.props.initCards()
+  }
 }
-
-export default App
+const mapDispatchToProps = dispatch => {
+  return {
+    initCards: () => dispatch(initCards())
+  }
+}
+export default connect(
+  null,
+  mapDispatchToProps
+)(App)

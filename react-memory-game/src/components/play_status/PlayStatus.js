@@ -1,4 +1,7 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import * as statusModule from './../../redux/modules/status'
+import  * as cardModule from './../../redux/modules/card'
 
 class PlayStatus extends Component {
   constructor(props) {
@@ -9,26 +12,42 @@ class PlayStatus extends Component {
     }
   }
   render() {
+    const { level, elapsed } = this.props
     return (
       <div className="status-footer">
-        <span>Level {this.state.level}</span>
+        <span>Level {level}</span>
         { this.StatusRender() }
-        <span> {this.state.elapsed} s</span>
+        <span> {elapsed} s</span>
       </div>
     )
   }
   StatusRender() {
-    const status = 'playing'
-    if (status === 'ready') {
+    const { status } = this.props
+    if (status === statusModule.READY) {
       return (<span className="play-status">Ready</span>)
     }
-    if (status === 'playing') {
+    if (status === statusModule.PLAYING) {
       return (<span className="play-status">Playing</span>)
     }
-    if (status === 'pass'){
+    if (status === statusModule.PASS){
       return (<span className="play-status pass">Play again</span>)
     }
   }
 }
 
-export default PlayStatus
+const mapStateToProps = state => {
+  return {
+    status: state[statusModule.NAME].status,
+    elapsed: state[statusModule.NAME].elapsed,
+    level: state[statusModule.NAME].level
+  }
+}
+const mapDispatchToProps = dispatch => {
+  return {
+  }
+}
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(PlayStatus)
+

@@ -20,11 +20,6 @@
 import { mapState } from 'vuex'
 import * as types from './../constant'
 export default {
-  data () {
-    return {
-      left: 7
-    }
-  },
   computed: {
     ...mapState(['leftMatched', 'highestSpeed'])
   },
@@ -39,7 +34,6 @@ export default {
       console.log(types.GAMESTATUSACTION)
       this.$store.dispatch(types.GAMESTATUSACTION, types.PASS)
       this.$store.commit(types.UPDATELEFTMATCHED, this.left)
-      this.left--
     }
   }
 }

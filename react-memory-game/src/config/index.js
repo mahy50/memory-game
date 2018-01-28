@@ -1,8 +1,8 @@
 // common
 export const IMAGECOUNT = 8
 export const LOCALSTORAGESTRING = 'react-memory-game'
-export const ROW = 2
-export const COLUMN = 2
+export const ROW = 4
+export const COLUMN = 4
 export const LEFTMATCHED = ROW * COLUMN / 2
 export const LEVEL = 1
 

@@ -1,6 +1,6 @@
 <template>
   <div class="dashboard">
-    <div class="brand" @click="test">
+    <div class="brand">
       Memory
     </div>
     <div class="match-info">
@@ -29,11 +29,6 @@ export default {
         this.$store.commit(types.UPDATEHEIGHESTSPEED, 9999)
         localStorage.removeItem(types.LOCALSTORAGESTRING)
       }
-    },
-    test () {
-      console.log(types.GAMESTATUSACTION)
-      this.$store.dispatch(types.GAMESTATUSACTION, types.PASS)
-      this.$store.commit(types.UPDATELEFTMATCHED, this.left)
     }
   }
 }

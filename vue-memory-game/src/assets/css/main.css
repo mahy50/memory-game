@@ -126,6 +126,7 @@ span {
   background-color: #faebd7;
 }
 .play-status.pass:hover {
+  border-radius: 5px;
   background-color: #e8cbb0
 }
 /* play status end */

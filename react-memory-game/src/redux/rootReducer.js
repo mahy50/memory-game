@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux'
-import {} from 'redux-thunk'
+
 import * as card from './modules/card'
 import * as status from './modules/status'
 

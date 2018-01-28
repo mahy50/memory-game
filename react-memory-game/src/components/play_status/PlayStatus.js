@@ -6,10 +6,7 @@ import  * as cardModule from './../../redux/modules/card'
 class PlayStatus extends Component {
   constructor(props) {
     super(props)
-    this.state = {
-      elapsed: 0,
-      level: 1
-    }
+    this.clickHandler = this.clickHandler.bind(this)
   }
   render() {
     const { level, elapsed } = this.props
@@ -30,8 +27,16 @@ class PlayStatus extends Component {
       return (<span className="play-status">Playing</span>)
     }
     if (status === statusModule.PASS){
-      return (<span className="play-status pass">Play again</span>)
+      return (<span className="play-status pass" onClick={this.clickHandler}>Play again</span>)
     }
+  }
+  clickHandler() {
+    const { resetCards, initCards, resetStatus } = this.props
+    resetCards()
+    resetStatus()
+    setTimeout(() => {
+      initCards()
+    }, 1000)
   }
 }
 
@@ -44,6 +49,9 @@ const mapStateToProps = state => {
 }
 const mapDispatchToProps = dispatch => {
   return {
+    resetCards: () => dispatch(cardModule.resetCards()),
+    initCards: () => dispatch(cardModule.initCards()),
+    resetStatus: () => dispatch(statusModule.resetStatus())
   }
 }
 export default connect(

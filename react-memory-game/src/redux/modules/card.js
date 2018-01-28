@@ -15,7 +15,7 @@ export function resetCards() {
 }
 export function initCards() {
   return {
-    type: INIT_CARDS,
+    type: INIT_CARDS
   }
 }
 export function flipCard(index) {
@@ -37,7 +37,10 @@ export const reducer = function(state = initState, action) {
       // 卡片全部翻转到背面
       return Object.assign({}, state, {
         cards: state.cards.map(item => {
-          return item.flipped = configs.FLIPPED
+          return {
+            cardName: item.cardName,
+            flipped: !configs.FLIPPED,
+          }
         })
       })
     case INIT_CARDS:
@@ -49,7 +52,7 @@ export const reducer = function(state = initState, action) {
       return Object.assign({}, state, {
         cards: state.cards.map((item, index) => {
           return (index === action.index)
-            ? {...item, flipped: !item.flipped}
+            ? {cardName: item.cardName, flipped: !item.flipped}
             : item
         })
       })

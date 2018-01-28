@@ -9,7 +9,8 @@ class Chessboard extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      lastCardIndex: null
+      lastCardIndex: null,
+      timer: null
     }
     this.flipEventHandler = this.flipEventHandler.bind(this)
   }
@@ -49,6 +50,15 @@ class Chessboard extends Component {
       lastCardIndex: val
     })
   }
+  handleMatched () {
+    const { updateLeftMatched, leftMatched, updateStatus, updateHighestSpeed } = this.props
+    updateLeftMatched()
+    if (leftMatched - 1 === 0) {
+      updateStatus(statusModule.PASS)
+      updateHighestSpeed()
+      clearInterval(this.state.timer)
+    }
+  }
   flipEventHandler(index) {
     const { lastCardIndex } = this.state
     const { status, flipCard, updateStatus, cards } = this.props
@@ -57,6 +67,12 @@ class Chessboard extends Component {
     // 若游戏未开始，变为PLAYING状态, 并开启计时器
     if (status !== statusModule.PLAYING) {
       updateStatus(statusModule.PLAYING)
+      let timer = setInterval(() => {
+        this.props.tick()
+      }, 1000)
+      this.setState({
+        timer
+      })
     }
     if (lastCardIndex == null) {
       this.setIndexState(index)
@@ -68,7 +84,7 @@ class Chessboard extends Component {
     const lastCard = cards[lastCardIndex].cardName
     if (card === lastCard) {
       this.setIndexState(null)
-      // this.handleMatched(-1)
+      this.handleMatched()
       return
     }
     // 否则，全部翻转回去
@@ -83,13 +99,18 @@ class Chessboard extends Component {
 const mapStateToProps = state => {
   return {
     cards: state[cardModule.NAME].cards,
-    status: state[statusModule.NAME].status
+    status: state[statusModule.NAME].status,
+    leftMatched: state[statusModule.NAME].leftMatched,
+    elapsed: state[statusModule.NAME].elapsed
   }
 }
 const mapDispatchToProps = dispatch => {
   return {
     flipCard: (index) => dispatch(cardModule.flipCard(index)),
-    updateStatus: (status) => dispatch(statusModule.updateStatus(status))
+    updateStatus: (status) => dispatch(statusModule.updateStatus(status)),
+    updateLeftMatched: () => dispatch(statusModule.updateLeftMatched()),
+    updateHighestSpeed: () => dispatch(statusModule.updateHighestSpeed()),
+    tick: ()  => dispatch(statusModule.tick())
   }
 }
 

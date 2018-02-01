@@ -9,7 +9,8 @@
     "start": "npm run dev",
     "lint": "eslint --ext .js,.vue src",
     "build": "node build/build.js",
-    "gh": "node build/gh-deploy.js"
+    "pregh": "npm run build",
+    "gh": "gh-pages -d dist"
   },
   "dependencies": {
     "vue": "^2.5.2",

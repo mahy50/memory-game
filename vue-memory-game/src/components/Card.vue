@@ -22,7 +22,7 @@ export default {
   },
   computed: {
     src () {
-      return `../../static/images/${this.card.cardName}.svg`
+      return require(`../../static/images/${this.card.cardName}.svg`)
     }
   },
   methods: {

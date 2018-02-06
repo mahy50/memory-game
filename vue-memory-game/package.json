@@ -10,7 +10,7 @@
     "lint": "eslint --ext .js,.vue src",
     "build": "node build/build.js",
     "pregh": "npm run build",
-    "gh": "gh-pages -d dist"
+    "gh": "gh-pages -d dist -e vue"
   },
   "dependencies": {
     "vue": "^2.5.2",

@@ -1,6 +1,6 @@
 // constant
-export const ROW = 4
-export const COLUMN = 4
+export const ROW = 2
+export const COLUMN = 2
 export const LEFTMATCHED = ROW * COLUMN / 2
 export const LEVEL = 1
 export const FLIPPED = true
